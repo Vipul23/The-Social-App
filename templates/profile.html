@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'favicon.png' %}" rel="icon" type="image/png">
+    <link rel="stylesheet" href="{% static 'src/style.css' %}">
+    <title>Home</title>
+</head>
+
+<body class="bg-slate-900">
+    <header>
+        <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+            <div class="flex flex-wrap items-center justify-between">
+                <div class="flex items-center justify-start">
+                    <a href="/" class="flex mr-4">
+                        <img src="{% static 'favicon.png' %}" class="h-8" alt="Logo" />
+                    </a>
+                    <form action="#" method="GET" class="hidden lg:block lg:pl-2">
+                        <label for="topbar-search" class="sr-only">Search</label>
+                        <div class="relative mt-1 lg:w-96">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input type="text" name="search" id="topbar-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Search">
+                        </div>
+                    </form>
+                </div>
+                <div class="flex items-center lg:order-2">
+                    <a href="/newpost"
+                        class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </a>
+                    <button id="toggleSidebarMobileSearch" type="button"
+                        class="p-2 text-gray-500 rounded-lg lg:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Search</span>
+                        <!-- Search icon -->
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <!-- Notifications -->
+                    <!-- <button type="button" data-dropdown-toggle="notification-dropdown"
+                        class="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <span class="sr-only">View notifications</span>
+                        
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
+                            </path>
+                        </svg>
+                    </button> -->
+
+                    <!-- Apps -->
+                    <!-- <button type="button" data-dropdown-toggle="apps-dropdown"
+                        class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <span class="sr-only">View notifications</span>
+                        
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                            </path>
+                        </svg>
+                    </button> -->
+                    <!-- User Dropdown -->
+                    <div class="">
+                        <div class="relative inline-block dropdown">
+                            <button
+                                class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-8 h-8 rounded-full" src="{{user_profile.profileimg.url}}"
+                                    alt="user photo">
+                            </button>
+                            <ul
+                                class="absolute hidden pt-3 text-gray-500 bg-white rounded-lg shadow-2xl -left-28 dark:bg-gray-800 dark:text-gray-400 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 dropdown-menu">
+                                <li class=""><label
+                                        class="block px-4 py-2 whitespace-no-wrap rounded-t">{{user_profile.user}}</a>
+                                </li>
+                                <li class=""><a class="block px-4 py-2 whitespace-no-wrap rounded-t hover:bg-gray-600"
+                                        href="/settings">Account Settings</a></li>
+                                <li class=""><a class="block px-4 py-2 whitespace-no-wrap hover:bg-gray-600"
+                                        href="/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <style>
+                        .dropdown:hover .dropdown-menu {
+                            display: block;
+                        }
+                    </style>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Feed -->
+    <div class="flex">
+        <div>
+            <img class="flex-none w-12 h-12 rounded-full bg-gray-50" tab_index="0" src="{{author_profile.profileimg.url}}" alt="">
+        </div>
+        <div>
+            <h1>{{author_profile.first_name}} {{author_profile.last_name}}</h1>
+        </div>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+
+</html>

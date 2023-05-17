@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'favicon.png' %}" rel="icon" type="image/png">
+    <link rel="stylesheet" href="{% static 'src/style.css' %}">
+    <title>Signup</title>
+</head>
+
+<body class="min-h-full bg-slate-900">
+
+    <div class="flex flex-col justify-around p-3 m-4 md:flex-row">
+        <div>
+            <img class="w-20 h-20 md:h-max md:w-max" src="{% static 'favicon.png' %}">
+        </div>
+        <div class="p-4 bg-slate-700 rounded-xl">
+            <h1 class="p-5 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Sign Up
+            </h1>
+            <form class="space-y-4 md:space-y-6" action="#" method="POST">
+                {% csrf_token %}
+                <div class="flex flex-row p-3">
+                    <div class="flex flex-col pr-2">
+                        <input type="f_name" name="f_name" id="f_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                            placeholder="First name" required="">
+                    </div>
+                    <div class="flex flex-col">
+                        <input type="l_name" name="l_name" id="l_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Last name" required="">
+                    </div>
+                </div>
+                <div class="p-3">
+                    <input type="email" name="email" id="email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Email id" required="">
+                </div>
+                <div class="p-3">
+                    <input type="text" name="username" id="username"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Username" required="">
+                </div>
+                <div class="p-3">
+                    <input type="password" name="password" id="password"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Password" required=""  onkeyup='validate();'>
+                </div>
+                <div class="p-3">
+                    <input type="password" name="password2" id="password2"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Confirm Password" required=""  onkeyup='validate();'>
+                </div>
+                <span id="message" class="p-3 ">
+                    {% for message in messages %}
+                    {{message}}
+                    {% endfor %}
+                </span>
+                <button type="submit" id="submit" href="#_" class="text-center w-full px-5 py-2.5 relative rounded group font-medium text-white inline-block">
+                    <span class="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-slate-600 to-slate-500"></span>
+                    <span class="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-slate-600 to-slate-500"></span>
+                    <span class="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-slate-600 to-slate-500"></span>
+                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-slate-600 from-slate-500"></span>
+                    <span class="relative">Create Account</span>
+                </button>
+            </form>
+            <p class="p-3 text-sm font-light text-gray-500 dark:text-gray-400">
+                Already have an account? <a href="/login"
+                    class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+            </p>
+        </div>
+    </div>
+    <script src="{% static 'src/js/password_validation.js' %}"></script> 
+</body>
+
+</html>

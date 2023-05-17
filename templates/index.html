@@ -1,0 +1,557 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'favicon.png' %}" rel="icon" type="image/png">
+    <link rel="stylesheet" href="{% static 'src/style.css' %}">
+    <title>Home</title>
+</head>
+
+<body class="bg-slate-900">
+    <header>
+        <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+            <div class="flex flex-wrap items-center justify-between">
+                <div class="flex items-center justify-start">
+                    <a href="/" class="flex mr-4">
+                        <img src="{% static 'favicon.png' %}" class="h-8" alt="Logo" />
+                    </a>
+                    <form action="#" method="GET" class="hidden lg:block lg:pl-2">
+                        <label for="topbar-search" class="sr-only">Search</label>
+                        <div class="relative mt-1 lg:w-96">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input type="text" name="search" id="topbar-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Search">
+                        </div>
+                    </form>
+                </div>
+                <div class="flex items-center lg:order-2">
+                    <a href="/newpost"
+                        class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </a>
+                    <button id="toggleSidebarMobileSearch" type="button"
+                        class="p-2 text-gray-500 rounded-lg lg:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Search</span>
+                        <!-- Search icon -->
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <!-- Notifications -->
+                    <!-- <button type="button" data-dropdown-toggle="notification-dropdown"
+                        class="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <span class="sr-only">View notifications</span>
+                        
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
+                            </path>
+                        </svg>
+                    </button> -->
+
+                    <!-- Apps -->
+                    <!-- <button type="button" data-dropdown-toggle="apps-dropdown"
+                        class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                        <span class="sr-only">View notifications</span>
+                        
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                            </path>
+                        </svg>
+                    </button> -->
+                    <!-- User Dropdown -->
+                    <div class="">
+                        <div class="relative inline-block dropdown">
+                            <button
+                                class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-8 h-8 rounded-full" src="{{user_profile.profileimg.url}}"
+                                    alt="user photo">
+                            </button>
+                            <ul
+                                class="absolute hidden pt-3 text-gray-500 bg-white rounded-lg shadow-2xl -left-28 dark:bg-gray-800 dark:text-gray-400 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 dropdown-menu">
+                                <li class=""><label
+                                        class="block px-4 py-2 whitespace-no-wrap rounded-t">{{user_profile.user}}</a>
+                                </li>
+                                <li class=""><a class="block px-4 py-2 whitespace-no-wrap rounded-t hover:bg-gray-600"
+                                        href="/settings">Account Settings</a></li>
+                                <li class=""><a class="block px-4 py-2 whitespace-no-wrap hover:bg-gray-600"
+                                        href="/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <style>
+                        .dropdown:hover .dropdown-menu {
+                            display: block;
+                        }
+                    </style>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Feed -->
+    <div class="flex justify-around p-3 md:justify-center">
+        <ul id="post_ul" role="list" class="justify-center ">
+            <div id="feed-loading"></div>
+        </ul>
+        <!-- Right Sidebar -->
+        <div class="self-start hidden p-5 my-5 ml-3 bg-gray-800 rounded-lg md:flex">
+            <!-- Sidebar Follow -->
+            <div class="p-4">
+                <h3 class="mb-4 text-base font-medium text-white text-">Recommended Followers</h3>
+                <ul>
+                    <li class="flex items-center py-2">
+                        <img class="w-10 h-10 mr-2 rounded-full" src="https://via.placeholder.com/50" alt="Avatar">
+                        <div>
+                            <h4 class="font-medium text-white">John Doe</h4>
+                        </div>
+                    </li>
+                    <li class="flex items-center py-2">
+                        <img class="w-10 h-10 mr-2 rounded-full" src="https://via.placeholder.com/50" alt="Avatar">
+                        <div>
+                            <h4 class="font-medium text-white">Jane Doe</h4>
+                        </div>
+                    </li>
+                    <li class="flex items-center py-2">
+                        <img class="w-10 h-10 mr-2 rounded-full" src="https://via.placeholder.com/50" alt="Avatar">
+                        <div>
+                            <h4 class="font-medium text-white">Bob Smith</h4>
+                        </div>
+                    </li>
+                    <li class="flex items-center py-2">
+                        <img class="w-10 h-10 mr-2 rounded-full" src="https://via.placeholder.com/50" alt="Avatar">
+                        <div>
+                            <h4 class="font-medium text-white">John Doe</h4>
+                        </div>
+                    </li>
+                    <li class="flex items-center py-2">
+                        <img class="w-10 h-10 mr-2 rounded-full" src="https://via.placeholder.com/50" alt="Avatar">
+                        <div>
+                            <h4 class="font-medium text-white">Jane Doe</h4>
+                        </div>
+                    </li>
+                    <li class="flex items-center py-2">
+                        <img class="w-10 h-10 mr-2 rounded-full" src="https://via.placeholder.com/50" alt="Avatar">
+                        <div>
+                            <h4 class="font-medium text-white">Bob Smith</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function getData(url, page, paginateBy) {
+            const urlWithParams = url + "?" + new URLSearchParams({
+                page: page,
+                per_page: paginateBy
+            })
+            const response = await fetch(urlWithParams);
+            return response.json();
+        }
+
+        class ScrollMorePaginator {
+            constructor(perPage) {
+                this.perPage = perPage
+                this.pageIndex = 1
+                this.lastPage = false
+                this.hasMorePosts = true;
+                this.container = document.querySelector("#post_ul")
+                this.elements = document.querySelectorAll("li")
+                this.loader = document.querySelector("#feed-loading")
+                this.options = {
+                    root: null,
+                    rootMargin: "0px",
+                    threshold: 0.5
+                }
+                this.loadMore()
+                this.watchIntersection()
+            }
+
+            onIntersect() {
+                if (!this.lastPage && this.hasMorePosts) {
+                    this.pageIndex++
+                    this.loadMore()
+                    // console.log("Loading more")
+                }
+            }
+
+            addElement(id, title, content, image, caption, author, author_id, author_follow, f_name, l_name, author_img, created_at, no_of_likes, no_of_comments, no_of_followers, is_liked, is_user) {
+                const li = document.createElement("li")
+                li.classList.add("flex", "flex-col", "px-4", "py-5", "mt-5", "md:p-5", "gap-x-6", "rounded-xl", "bg-slate-700");
+                li.setAttribute("id", id);
+
+                const top = document.createElement("div");
+                top.classList.add("flex", "flex-col", "justify-between", "md:flex-row");
+
+                const authorInfo = document.createElement("div");
+                authorInfo.classList.add("flex", "pb-2", "gap-x-4", "md:pb-0");
+
+                const profileUserInfo = document.createElement("div");
+                profileUserInfo.classList.add("dropdown", "dropdown-top");
+
+
+
+                profileUserInfo.innerHTML = `
+                <div class="popover__wrapper">
+                    <a href="/profile/${author}">
+                        <img class="flex-none w-12 h-12 rounded-full bg-gray-50" tab_index="0" src="${author_img}" alt="">
+                    </a>
+                    <div class="flex justify-around popover__content">
+                        <div>
+                            <p>${f_name} ${l_name}</p>
+                            <p><p class="inline" id="followcount-${id}">${no_of_followers}</p>&nbspfollowers</p>
+                        </div>
+                        <div>
+                            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" id="follow-button-${id}"
+                            onclick="followUser(${author_id},'id:${id.toString()}')">Follow</button>
+                        </div>
+                    </div>
+                </div>
+                    `;
+
+                const authorDetails = document.createElement("div");
+                authorDetails.classList.add("flex-auto", "min-w-0");
+
+                const authorName = document.createElement("p");
+                authorName.classList.add("text-sm", "font-semibold", "leading-6", "text-slate-50");
+                authorName.textContent = author;
+
+                const postTimestamp = document.createElement("p");
+                postTimestamp.classList.add("mt-1", "text-xs", "leading-5", "truncate", "text-slate-300");
+                postTimestamp.textContent = created_at;
+
+                authorDetails.appendChild(authorName);
+                authorDetails.appendChild(postTimestamp);
+                authorInfo.appendChild(profileUserInfo);
+                authorInfo.appendChild(authorDetails);
+
+                const postActions = document.createElement("div");
+                postActions.classList.add("flex", "rounded-md");
+                postActions.setAttribute("role", "group");
+
+                let id_s = "likePost('" + id + "')"
+                const likeButton = document.createElement("button");
+                likeButton.classList.add("flex", "py-4", "mr-1", "text-sm", "text-white", "rounded-md", "hover:bg-gray-800", "px-7");
+                likeButton.setAttribute("onclick", id_s);
+
+                const likeButtonIcon_true = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                likeButtonIcon_true.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                likeButtonIcon_true.setAttribute("viewBox", "0 0 24 24");
+                likeButtonIcon_true.classList.add("w-5", "h-5");
+                likeButtonIcon_true.setAttribute("fill", "currentColor");
+
+                const likeButtonIcon_false = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                likeButtonIcon_false.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                likeButtonIcon_false.setAttribute("viewBox", "0 0 24 24");
+                likeButtonIcon_false.classList.add("w-5", "h-5");
+                likeButtonIcon_false.setAttribute("stroke", "currentColor");
+                likeButtonIcon_false.setAttribute("fill", "none");
+                likeButtonIcon_false.setAttribute("stroke-width", "1.5");
+
+                const likeButtonIconPath_true = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                likeButtonIconPath_true.setAttribute("d", "M7.493 18.75c-.425 0-.82-.236-.975-.632A7.48 7.48 0 016 15.375c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75 2.25 2.25 0 012.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23h-.777zM2.331 10.977a11.969 11.969 0 00-.831 4.398 12 12 0 00.52 3.507c.26.85 1.084 1.368 1.973 1.368H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 01-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227z");
+
+                const likeButtonIconPath_false = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                likeButtonIconPath_false.setAttribute("stroke-linecap", "round");
+                likeButtonIconPath_false.setAttribute("stroke-linejoin", "round");
+                likeButtonIconPath_false.setAttribute("d", "M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z");
+
+                if (is_liked == true) {
+                    likeButtonIcon_false.classList.add("collapse");
+                }
+                else {
+                    likeButtonIcon_true.classList.add("collapse");
+                }
+
+                let like_icon_id_t = "likes-icont-" + id
+                likeButtonIcon_true.setAttribute("id", like_icon_id_t);
+                let like_icon_id_f = "likes-iconf-" + id
+                likeButtonIcon_false.setAttribute("id", like_icon_id_f);
+
+                likeButtonIcon_true.appendChild(likeButtonIconPath_true);
+                likeButtonIcon_false.appendChild(likeButtonIconPath_false);
+                likeButton.appendChild(likeButtonIcon_true);
+                likeButton.appendChild(likeButtonIcon_false);
+
+                const likeButtonText = document.createElement("span");
+                likeButtonText.classList.add("ml-2");
+                let like_id = "likes-count-" + id
+                likeButtonText.setAttribute("id", like_id);
+                likeButtonText.textContent = no_of_likes;
+
+                likeButton.appendChild(likeButtonText);
+
+                const commentButton = document.createElement("a");
+                commentButton.classList.add("flex", "py-4", "mr-1", "text-sm", "text-white", "rounded-md", "hover:bg-gray-800", "px-7");
+                commentButton.setAttribute("href", "/comments/" + id + "");
+
+                const commentButtonIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                commentButtonIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                commentButtonIcon.setAttribute("viewBox", "0 0 20 20");
+                commentButtonIcon.setAttribute("fill", "currentColor");
+                commentButtonIcon.classList.add("w-5", "h-5");
+
+                const commentButtonIconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                commentButtonIconPath.setAttribute("fill-rule", "evenodd");
+                commentButtonIconPath.setAttribute("clip-rule", "evenodd");
+                commentButtonIconPath.setAttribute("d", "M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902 1.168.188 2.352.327 3.55.414.28.02.521.18.642.413l1.713 3.293a.75.75 0 001.33 0l1.713-3.293a.783.783 0 01.642-.413 41.102 41.102 0 003.55-.414c1.437-.231 2.43-1.49 2.43-2.902V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0010 2zM6.75 6a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 2.5a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5z");
+
+                commentButtonIcon.appendChild(commentButtonIconPath);
+                commentButton.appendChild(commentButtonIcon);
+
+                const commentButtonText = document.createElement("span");
+                commentButtonText.classList.add("ml-2");
+                commentButtonText.textContent = no_of_comments;
+
+                commentButton.appendChild(commentButtonText);
+
+                const shareButton = document.createElement("a");
+                shareButton.classList.add("flex", "py-4", "mr-1", "text-sm", "text-white", "rounded-md", "hover:bg-gray-800", "px-7");
+                shareButton.setAttribute("href", "#_");
+
+                const shareButtonIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                shareButtonIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                shareButtonIcon.setAttribute("viewBox", "0 0 20 20");
+                shareButtonIcon.setAttribute("fill", "currentColor");
+                shareButtonIcon.classList.add("w-5", "h-5");
+
+                const shareButtonIconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                shareButtonIconPath.setAttribute("fill-rule", "evenodd");
+                shareButtonIconPath.setAttribute("clip-rule", "evenodd");
+                shareButtonIconPath.setAttribute("d", "M13 4.5a2.5 2.5 0 11.702 1.737L6.97 9.604a2.518 2.518 0 010 .792l6.733 3.367a2.5 2.5 0 11-.671 1.341l-6.733-3.367a2.5 2.5 0 110-3.475l6.733-3.366A2.52 2.52 0 0113 4.5z");
+
+                shareButtonIcon.appendChild(shareButtonIconPath);
+                shareButton.appendChild(shareButtonIcon);
+
+                const ShareButtonInfo = document.createElement("div");
+                ShareButtonInfo.classList.add("dropdown", "dropdown-top");
+
+
+                ShareButtonInfo.innerHTML = `
+                <div class="share_popover__wrapper">
+                    <a href="/profile/${author}">
+                        <span class="ml-2">Share</span>
+                    </a>
+                    <div class="flex justify-around share_popover__content">
+                        <div class="flex flex-col">
+                            <h3 class="justify-start">Share via</h3>
+                            <div>
+                                <ul class="flex">
+                                    <li class="p-2">
+                                        <a href="#" class="flex items-center justify-center w-8 h-8 p-2 text-white bg-blue-500 rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                        </a>
+                                    </li>
+                                    <li class="p-2">
+                                        <a href="#" class="flex items-center justify-center w-8 h-8 p-2 text-white bg-blue-500 rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                        </a>
+                                    </li>
+                                    <li class="p-2">
+                                        <a href="#" class="flex items-center justify-center w-8 h-8 p-2 text-white bg-blue-500 rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                        </a>
+                                    </li>
+                                    <li class="p-2">
+                                        <a href="#" class="flex items-center justify-center w-8 h-8 p-2 text-white bg-blue-500 rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                                        </a>
+                                    </li>
+                                </ul>    
+                            </div>
+                            <div class="flex">
+                                    <input class="m-1 text-sm border border-blue-500 border-solid rounded copyurl" type="url" placeholder="Enter some text" disabled readonly>
+                                    <button class="px-2 py-2 m-1 text-xs font-bold text-white bg-blue-500 border border-blue-700 rounded hover:bg-blue-700"onclick="copyMeOnClipboard()">
+                                        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5A3.375 3.375 0 006.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0015 2.25h-1.5a2.251 2.251 0 00-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 00-9-9z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    `;
+
+                shareButton.appendChild(ShareButtonInfo);
+
+                postActions.appendChild(likeButton);
+                postActions.appendChild(commentButton);
+                postActions.appendChild(shareButton);
+
+                if (is_user == true) {
+                    const moreButton = document.createElement("a");
+                    moreButton.classList.add("flex", "py-4", "mr-1", "text-sm", "text-white", "rounded-md", "hover:bg-gray-800", "px-7");
+                    moreButton.setAttribute("href", "#_");
+
+                    const moreButtonIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    moreButtonIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                    moreButtonIcon.setAttribute("viewBox", "0 0 24 24");
+                    moreButtonIcon.setAttribute("stroke-width", "1.5");
+                    moreButtonIcon.setAttribute("stroke", "currentColor");
+                    moreButtonIcon.setAttribute("fill", "none");
+                    moreButtonIcon.classList.add("w-5", "h-5");
+
+                    const moreButtonIconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    moreButtonIconPath.setAttribute("stroke-linecap", "round");
+                    moreButtonIconPath.setAttribute("stroke-linejoin", "round");
+                    moreButtonIconPath.setAttribute("d", "M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z");
+
+                    moreButtonIcon.appendChild(moreButtonIconPath);
+                    moreButton.appendChild(moreButtonIcon);
+
+                    postActions.appendChild(moreButton);
+                }
+
+                top.appendChild(authorInfo);
+                top.appendChild(postActions);
+
+                li.appendChild(top);
+
+                const postTitle = document.createElement("div");
+                postTitle.classList.add("flex", "gap-x-4", "md:pt-5");
+                const postTitleText = document.createElement("p");
+                postTitleText.classList.add("text-lg", "font-semibold", "text-slate-50");
+                postTitleText.textContent = title;
+
+                postTitle.appendChild(postTitleText);
+
+                li.appendChild(postTitle);
+
+                const postContent = document.createElement("div");
+                postContent.classList.add("flex", "gap-x-4", "md:pt-5");
+                const postContentText = document.createElement("p");
+                postContentText.classList.add("text-slate-50");
+                postContentText.textContent = content;
+
+                postContent.appendChild(postContentText);
+
+                li.appendChild(postContent);
+
+                if (image != null) {
+                    const postImageFig = document.createElement("figure");
+                    postImageFig.classList.add("max-w-xl", "pt-3");
+
+                    const postImage = document.createElement("img");
+                    postImage.classList.add("h-auto", "max-w-xs", "md:max-w-xl");
+                    postImage.setAttribute("src", image);
+                    postImage.setAttribute("alt", "");
+
+                    const postCaption = document.createElement("figcaption");
+                    postCaption.classList.add("mt-2", "text-sm", "text-center", "text-gray-500", "dark:text-gray-400");
+                    postCaption.textContent = caption;
+
+                    postImageFig.appendChild(postImage);
+                    postImageFig.appendChild(postCaption);
+
+                    li.appendChild(postImageFig);
+
+                }
+
+
+                this.container.append(li)
+            }
+
+            watchIntersection() {
+                document.addEventListener("DOMContentLoaded", () => {
+                    const observer = new IntersectionObserver(this.onIntersect.bind(this),
+                        this.options);
+                    observer.observe(this.loader);
+                })
+            }
+
+            loadMore() {
+                getData("{% url 'index_listing_api' %}", this.pageIndex, this.perPage)
+                    .then(response => {
+                        const postsArray = Object.values(response.posts);
+                        postsArray.forEach((post) => {
+                            this.addElement(post.id, post.title, post.content, post.image, post.caption, post.author, post.author_id, post.author_follow, post.f_name, post.l_name, post.author_img, post.created_at, post.no_of_likes, post.no_of_comments, post.no_of_followers, post.is_liked, post.is_user)
+                        });
+                        this.loader.style.opacity = !response.page.has_next ? "0" : "1";
+                        this.lastPage = !response.page.has_next;
+                        this.hasMorePosts = response.page.has_next;
+                    });
+            }
+
+        }
+
+        new ScrollMorePaginator(6);
+    </script>
+    <script>
+        function likePost(postId) {
+            fetch(`/post_action/like?postId=${postId}`, {
+                method: 'GET'
+            })
+                .then(async response => {
+                    let likestatus = await response.json();
+                    const likesicont = document.getElementById(`likes-icont-${postId}`);
+                    const likesiconf = document.getElementById(`likes-iconf-${postId}`);
+                    if (likestatus.like == true) {
+                        likesicont.classList.remove("collapse");
+                        likesiconf.classList.add("collapse");
+
+                        const likesCount = document.getElementById(`likes-count-${postId}`);
+                        const currentLikes = parseInt(likesCount.textContent);
+                        likesCount.textContent = currentLikes + 1;
+                    }
+                    else {
+
+                        likesicont.classList.add("collapse");
+                        likesiconf.classList.remove("collapse");
+                        const likesCount = document.getElementById(`likes-count-${postId}`);
+                        const currentLikes = parseInt(likesCount.textContent);
+                        likesCount.textContent = currentLikes - 1;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        function followUser(userId, postIdr) {
+            postId = postIdr.replace("id:", "");
+            fetch(`/user_action/follow?userId=${userId.toString()}`, {
+                method: 'GET'
+            })
+                .then(async response => {
+                    let followstatus = await response.json();
+                    const followbutton = document.getElementById(`follow-button-${postId}`);
+                    const followcount = document.getElementById(`followcount-${postId}`);
+                    if (followstatus.follow == true) {
+                        const currentFollowers = parseInt(followcount.textContent);
+                        followcount.textContent = currentFollowers + 1;
+                        followbutton.textContent = "Unfollow";
+                    }
+                    else if (followstatus.follow == false) {
+                        const currentFollowers = parseInt(followcount.textContent);
+                        followcount.textContent = currentFollowers - 1;
+                        followbutton.textContent = "Follow";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+    <!-- <script src="{% static 'src/js/ext/flowbite.min.js' %}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+
+</html>
