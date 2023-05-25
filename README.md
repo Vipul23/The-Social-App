@@ -33,3 +33,5 @@ To run the social media website locally, follow these steps:
 6. Open your browser and visit `http://127.0.0.1:8000/` to access the website.
 
 Note: This is still in Development and is not suitable for prduction use.The project may experience massive UI and backend changes. 
+
+![pagepreview](https://github.com/Vipul23/The-Social-App/blob/main/github_assets/PagePreview.jpeg)
